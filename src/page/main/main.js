@@ -3,7 +3,7 @@
  * @Autor: zhangzhanhua
  * @Date: 2021-02-26 15:40:35
  * @LastEditors: zhangzhanhua
- * @LastEditTime: 2021-03-01 10:30:06
+ * @LastEditTime: 2021-03-03 23:08:40
  */
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
@@ -71,12 +71,7 @@ function Main(props) {
                             <Mheader></Mheader>
                         </Header>
                         <Content
-                            className="site-layout-background"
-                            style={{
-                                margin: '24px 16px',
-                                padding: 24,
-                                minHeight: 280,
-                            }}
+                            className="contenClass"
                         >
 
                             {/* Switch单一匹配,如果没有就是匹配到的路由都会显示出来 */}

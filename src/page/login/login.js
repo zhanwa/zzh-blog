@@ -1,14 +1,15 @@
 /*
- * @Description: 
+ * @Description:
  * @Autor: zhangzhanhua
  * @Date: 2021-02-26 09:39:27
  * @LastEditors: zhangzhanhua
- * @LastEditTime: 2021-02-26 15:52:47
+ * @LastEditTime: 2021-03-03 20:42:19
  */
-import React, { useCallback, useState } from 'react';
-import { Form, Card, Input, Button } from 'antd';
+import React, { useCallback, useState,useEffect } from 'react';
+import { Form, Card, Input, Button,message } from 'antd';
+import md5 from 'js-md5';
 import './login.scss'
-import {getTestData} from '@/api/login.js'
+import {toLogin} from '@/api/login.js'
 import {
     UserOutlined,
     LockOutlined,
@@ -17,6 +18,9 @@ function Login(props) {
     const [userName, setUserName] = useState('') //用户名
     const [password, setPassword] = useState('') //密码
     const [loading, setLoading] = useState(false) //loading
+    useEffect(()=>{
+        console.log(process.env.NODE_ENV)
+    },[])
     /**
      * @description:校验密码
      * @param {*} checkPassword
@@ -43,16 +47,19 @@ function Login(props) {
     const checkLogin = () => {
         setLoading(true)
         console.log(userName, password);
-        getTestData().then(res=>{
-            console.log(res);
-            if(res.status === 200){
-                setLoading(false)
-                // replace不能回到上一级,适合登录后操作
-                props.history.replace({pathname:'/main',state:{id:'234434'}})
+        let params = {
+            userName:userName,
+            password:md5(password),
+        }
+        toLogin(params).then(res=>{
+            if(res.data.success){
+                message.success(res.data.msg)
+                sessionStorage.setItem('token',res.data.token)
+                props.history.replace('/main')
             }
         })
     }
-    
+
     return (
         <div className='login'>
             <div className="loginContainer">

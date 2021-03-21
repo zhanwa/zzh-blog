@@ -33,6 +33,12 @@
               height: 100%;
           }
           .site-layout{
+              .contenClass{
+                padding: 10px;
+                margin-top: 10px;
+                background-color: #fff;
+                overflow: auto;
+              }
               .mainFooter{
                 padding: 16px 50px;
               }
