@@ -1,6 +1,9 @@
-import React from 'react';
+import React ,{useEffect} from 'react';
 
 function Home(props) {
+    useEffect(()=>{
+        
+    })
     return (
         <div>
             我是系统首页

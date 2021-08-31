@@ -3,7 +3,7 @@
  * @Autor: zhangzhanhua
  * @Date: 2021-02-26 15:10:08
  * @LastEditors: zhangzhanhua
- * @LastEditTime: 2021-03-03 20:09:25
+ * @LastEditTime: 2021-07-05 09:34:38
  */
 import axios from '@/lib/http.request.js'
 //获取测试数据
@@ -25,7 +25,7 @@ export const getTestData = (data) => {
   //登录
   export const toLogin = (data) => {
     return axios.request({
-      url: 'admin/login',
+      url: 'admin/loginTest',
       data,
       method: 'post',
     })

@@ -3,12 +3,12 @@
  * @Autor: zhangzhanhua
  * @Date: 2021-02-24 14:42:22
  * @LastEditors: zhangzhanhua
- * @LastEditTime: 2021-02-27 16:59:32
+ * @LastEditTime: 2021-07-05 10:24:53
  */
 import './App.css';
 // import { Button } from 'antd';
 import React from 'react'
-import Login from './page/login/login.js' //登录页组件
+import Login from './page/login/login.jsx' //登录页组件
 import Main from './page/main/main.js' //Main主页组件
 
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'

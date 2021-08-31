@@ -191,7 +191,7 @@
  * @return {*}
  * @author: zhangzhanhua
  */
-import React, { useState, useCallback, useEffect,createContext, useContext,Reducer, useReducer,useRef } from 'react';
+import React, { useState, useCallback, useEffect, createContext, useContext, Reducer, useReducer, useRef } from 'react';
 import { Input, Button, List } from 'antd'
 import { useSelector, useDispatch } from "react-redux";
 import { getToDoListData } from '@/api/login.js'
@@ -206,13 +206,13 @@ import "./toDoList.scss"
 function Test(props) {
     let propsValue = useContext(PropsContext) //使用useContext接受传过来的值
     return (
-       <>
-        <div>
-            我是测试能不能接受userContext的值的组件
-            userContext:{propsValue}
-        </div>
-        <TestChild></TestChild>
-       </>
+        <>
+            <div>
+                我是测试能不能接受userContext的值的组件
+                userContext:{propsValue}
+            </div>
+            <TestChild></TestChild>
+        </>
     );
 }
 
@@ -238,16 +238,16 @@ function TestChild(props) {
  * @author: zhangzhanhua
  */
 function TestDurecer(props) {
-    let {name,dispatch1} = useContext(NameContext) //使用useContext接受传过来的值
+    let { name, dispatch1 } = useContext(NameContext) //使用useContext接受传过来的值
     return (
         <>
-        <div>
-            我是userContext和userDurcer测试的值的组件
-            userContext:{name}
-            <Button onClick={()=>dispatch1({type:'zzy',data:'xsdfa'})}>改变</Button>
-        </div>
-        <br/>
-        <br/>
+            <div>
+                我是userContext和userDurcer测试的值的组件
+                userContext:{name}
+                <Button onClick={() => dispatch1({ type: 'zzy', data: 'xsdfa' })}>改变</Button>
+            </div>
+            <br />
+            <br />
         </>
     );
 }
@@ -263,14 +263,14 @@ function ToDoList(props) {
     const dispatch = useDispatch()//返回Redux store中对dispatch函数的引用
 
     //使用reducer useReducer第一个参是处理要返回出来的值的函数,第二个是初始值, 而对应接受的数组第一个参数是需要的值,第二个是派发函数,由他改变action
-    const [name,dispatch1] = useReducer((state,action)=>{
-        switch(action.type){
+    const [name, dispatch1] = useReducer((state, action) => {
+        switch (action.type) {
             case 'zzy':
                 return action.data
             default:
                 return state
         }
-    },'zzh')
+    }, 'zzh')
     useEffect(() => {
         const initWorking = () => { //有了thunk中间件,可以返回一个函数给action,以前只能派发一个对象
             return (dispatch) => {
@@ -290,7 +290,7 @@ function ToDoList(props) {
         /**
          * 回调一个return实现组件销毁功能
          */
-        return ()=>{
+        return () => {
             // alert('我退出了')
         }
     }, [dispatch])
@@ -324,11 +324,11 @@ function ToDoList(props) {
         dispatch(action)
     }
 
-    const changeUserDucer = ()=>{
+    const changeUserDucer = () => {
         console.log('xx');
         let action = {
-            type:'zzy',
-            data:'ying'
+            type: 'zzy',
+            data: 'ying'
         }
         dispatch1(action)
     }
@@ -346,15 +346,15 @@ function ToDoList(props) {
                 }
             />
             {/* 使用PropsContext.Provider这个标签作为一个提供器,包裹在下面的组件都能接收到value */}
-            <PropsContext.Provider value={workTip}> 
-            <Test></Test>
+            <PropsContext.Provider value={workTip}>
+                <Test></Test>
             </PropsContext.Provider>
             {/* 使用userreducer和usercontext实现类似redux功能   这里把dispatch1也要传过去,这呀就可以在子组件更新状态了*/}
-            <NameContext.Provider value={{name,dispatch1}}> 
-            <TestDurecer />
+            <NameContext.Provider value={{ name, dispatch1 }}>
+                <TestDurecer />
             </NameContext.Provider>
             <h1>我是使用userducer的出来的值 {name}</h1>
-            <Button onClick={()=>changeUserDucer()}>我要改变userducer</Button>
+            <Button onClick={() => changeUserDucer()}>我要改变userducer</Button>
         </div>
     );
 }
